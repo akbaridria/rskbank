@@ -201,7 +201,7 @@ export default defineComponent({
         setTimeout(() => {
           document.getElementById("chartTotalTrade")!.innerHTML = "";
           this.generateChartTotalTrade();
-        }, 500);
+        }, 1500);
       }
     },
     "store.state.loadingTotalUniqueUserByDate": function (newValue) {
@@ -209,7 +209,7 @@ export default defineComponent({
         setTimeout(() => {
           document.getElementById("chartTotalUniqueUser")!.innerHTML = "";
           this.generateChartUniqueUser();
-        }, 1000);
+        }, 1500);
       }
     },
     "store.state.loadingTotalNewUserByDate": function (newValue) {
@@ -372,15 +372,6 @@ export default defineComponent({
       await this.$data.store.dispatch("getTotalNewUserByDate");
       this.$data.totalNewUserByDate = this.$data.store.state.totalNewUserByDate;
       this.$data.loading = false;
-      setTimeout(() => {
-        this.generateChartTotalTrade();
-      }, 500);
-      setTimeout(() => {
-        this.generateChartUniqueUser();
-      }, 500);
-      setTimeout(() => {
-        this.generateChartTotalNewUser();
-      }, 500);
     },
     async generateDataRif() {
       this.$data.loading = true;
@@ -434,15 +425,6 @@ export default defineComponent({
       await this.$data.store.dispatch("getTotalNewUserByDateRif");
       this.$data.totalNewUserByDate = this.$data.store.state.totalNewUserByDate;
       this.$data.loading = false;
-      setTimeout(() => {
-        this.generateChartTotalTrade();
-      }, 500);
-      setTimeout(() => {
-        this.generateChartUniqueUser();
-      }, 500);
-      setTimeout(() => {
-        this.generateChartTotalNewUser();
-      }, 500);
     },
     goToAddress(address: string) {
       window.open(`https://explorer.rsk.co/address/${address}`);
