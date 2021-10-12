@@ -1,4 +1,4 @@
-# rskbank
+# rsbank
 
 ## Project Resources
 - Covalent APi
