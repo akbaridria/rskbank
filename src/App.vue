@@ -1,5 +1,5 @@
 <template>
-  <template v-if="!isMobile()">
+  <template v-if="!isMobile() && !isSfarari()">
     <div class="logo">
       <div class="logo-wrapper">
         <div class="box-logo">
@@ -81,7 +81,8 @@
   </template>
   <template v-else>
     <div style="padding: 12px;">
-    currently rsbank not supported for mobile device!
+    currently rsbank not supported for mobile device or safari browser!
+    Only on Desktop Chrome Browser.
     </div>
   </template>
 </template>
@@ -146,6 +147,14 @@ export default defineComponent({
         return true;
       } else {
         return false;
+      }
+    },
+    isSfarari(){
+      if (navigator.vendor.match(/apple/i))
+      {
+        return true
+      } else {
+        return false
       }
     },
     changeInput(address: string) {
