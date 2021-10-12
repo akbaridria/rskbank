@@ -29,7 +29,7 @@ example tx= 0x3599a92a8c2e9ac90833d849ac588a9916dcd0aa8e599757e73f5b78ce8b96cd
 <img width="1219" alt="Screenshot 2021-10-12 at 12 03 50" src="https://user-images.githubusercontent.com/26589426/136894661-e747cb17-3ff4-43d0-b22b-604c1378d8cf.png">
 to get the collected fee with the return amount, i will get it from index 5 and 7
 
-## tools and library
+## Tools and Library
 - vue (this repo)
 - python flask [backend](https://github.com/akbaridria/rskbank-backend)
 - python [crawler](https://github.com/akbaridria/rskbank-crawler)
