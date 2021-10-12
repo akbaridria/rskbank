@@ -1,78 +1,89 @@
 <template>
-  <div class="logo">
-    <div class="logo-wrapper">
-      <div class="box-logo">
-        <Logo style="padding: 12px 0px 12px 12px" />
+  <template v-if="!isMobile()">
+    <div class="logo">
+      <div class="logo-wrapper">
+        <div class="box-logo">
+          <Logo style="padding: 12px 0px 12px 12px" />
+        </div>
+        <div class="text-logo"><strong>RSbanK</strong></div>
       </div>
-      <div class="text-logo"><strong>RSbanK</strong></div>
-    </div>
-    <div class="wrapper-search-address">
-      <div class="wrapper-search">
-        <Icons :select="`Search`" style="width: 16px; padding: 0px 6px; cursor: pointer;" @click="
-            $router.push({
-              path: 'adresses',
-              query: { address: inputUser },
-            })
-          " />
-        <input
-          type="text"
-          :value="inputUser"
-          @input="changeInput($event.target.value)"
-          class="input-default"
-          placeholder="Search your address here..."
-          @keyup.enter="
-            $router.push({
-              path: 'adresses',
-              query: { address: inputUser },
-            })
-          "
-        />
-      </div>
-    </div>
-  </div>
-  <div class="default-layout-wrapper">
-    <div class="side-navigation-bar">
-      <div
-        :class="
-          $route.name === item.pathName
-            ? `wrapper-menu`
-            : `wrapper-menu-inactive`
-        "
-        v-for="(item, index) in listMenu"
-        :key="index"
-        @click="changeMenu(item.icon)"
-      >
-        <div
-          class="box-icon"
-          :style="
-            $route.name === item.pathName
-              ? `background-color: #4fd1c5`
-              : `background-color: white`
-          "
-        >
+      <div class="wrapper-search-address">
+        <div class="wrapper-search">
           <Icons
-            style="padding: 6px"
-            :select="`${item.icon}`"
-            :color="$route.name === item.pathName ? `white` : `#4FD1C5`"
+            :select="`Search`"
+            style="width: 16px; padding: 0px 6px; cursor: pointer"
+            @click="
+              $router.push({
+                path: 'adresses',
+                query: { address: inputUser },
+              })
+            "
+          />
+          <input
+            type="text"
+            :value="inputUser"
+            @input="changeInput($event.target.value)"
+            class="input-default"
+            placeholder="Search your address here..."
+            @keyup.enter="
+              $router.push({
+                path: 'adresses',
+                query: { address: inputUser },
+              })
+            "
           />
         </div>
-        <router-link
-          class="link-style"
-          :id="item.icon"
-          :style="
-            $route.name === item.pathName
-              ? `color: #2d3748; font-weight: bold`
-              : `color: #A0AEC0; font-weight: bold`
-          "
-          :to="{ name: item.pathName }"
-          >{{ item.name }}</router-link
-        >
       </div>
     </div>
-    <div style="width: 100%">
-      <router-view />
+    <div class="default-layout-wrapper">
+      <div class="side-navigation-bar">
+        <div
+          :class="
+            $route.name === item.pathName
+              ? `wrapper-menu`
+              : `wrapper-menu-inactive`
+          "
+          v-for="(item, index) in listMenu"
+          :key="index"
+          @click="changeMenu(item.icon)"
+        >
+          <div
+            class="box-icon"
+            :style="
+              $route.name === item.pathName
+                ? `background-color: #4fd1c5`
+                : `background-color: white`
+            "
+          >
+            <Icons
+              style="padding: 6px"
+              :select="`${item.icon}`"
+              :color="$route.name === item.pathName ? `white` : `#4FD1C5`"
+            />
+          </div>
+          <router-link
+            class="link-style"
+            :id="item.icon"
+            :style="
+              $route.name === item.pathName
+                ? `color: #2d3748; font-weight: bold`
+                : `color: #A0AEC0; font-weight: bold`
+            "
+            :to="{ name: item.pathName }"
+            >{{ item.name }}</router-link
+          >
+        </div>
+      </div>
+      <div style="width: 100%">
+        <router-view />
+      </div>
     </div>
-  </div>
+  </template>
+  <template v-else>
+    <div style="padding: 12px;">
+    currently rsbank not supported for mobile device!
+    </div>
+  </template>
 </template>
 
 <script lang="ts">
@@ -115,6 +126,12 @@ export default defineComponent({
           pathName: "Adresses",
           path: "/adresses",
         },
+        {
+          icon: "QuestionMark",
+          name: "About",
+          pathName: "About",
+          path: "/about",
+        },
       ],
     };
   },
@@ -124,6 +141,13 @@ export default defineComponent({
     // console.log(store.state.dataFetching)
   },
   methods: {
+    isMobile() {
+      if (screen.width <= 760) {
+        return true;
+      } else {
+        return false;
+      }
+    },
     changeInput(address: string) {
       this.$data.inputUser = address;
     },

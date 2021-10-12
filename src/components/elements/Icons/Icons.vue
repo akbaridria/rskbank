@@ -8,7 +8,8 @@ import PieChart from "@/static/icons/PieChart.vue";
 import StartChart from "@/static/icons/StartChart.vue";
 import Wallet from "@/static/icons/Wallet.vue";
 import Search from "@/static/icons/Search.vue";
-import Globe from "@/static/icons/Globe.vue"
+import Globe from "@/static/icons/Globe.vue";
+import QuestionMark from "@/static/icons/QuestionMark.vue"
 export default {
   name: "Icons",
   components: {
@@ -17,7 +18,8 @@ export default {
     StartChart,
     Wallet,
     Search,
-    Globe
+    Globe,
+    QuestionMark
   },
   props: {
     select: {
